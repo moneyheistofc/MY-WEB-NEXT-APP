@@ -342,4 +342,4 @@ function ContactModal({ isOpen, onClose }) {
       </div>
     </div>
   )
-    }
+}

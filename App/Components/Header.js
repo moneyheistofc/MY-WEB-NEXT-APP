@@ -36,11 +36,14 @@ export default function Header() {
 
   return (
     <>
-      <header className="glass-nav">
-        <div className="nav-container">
-          <div className="brand">
-            <div className="brand-logo">MR NIPUN OFC / TECH-WEB</div>
+      <header className="glass-header">
+        <div className="header-content">
+          <div className="logo">
+            <div className="logo-text">MR NIPUN OFC / TECH-WEB</div>
           </div>
+          <button className="home-btn" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
+            Home
+          </button>
           <div 
             className={`hamburger-menu ${isMenuOpen ? 'active' : ''}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -54,7 +57,7 @@ export default function Header() {
 
       <nav className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
         <ul>
-          <li><a href="#" onClick={(e) => { e.preventDefault(); setIsMenuOpen(false); window.scrollTo({top: 0, behavior: 'smooth'}); }}>Home</a></li>
+          <li><a href="/" onClick={() => setIsMenuOpen(false)}>Home</a></li>
           <li><a href="#" onClick={(e) => { e.preventDefault(); openModal('about'); }}>About</a></li>
           <li><a href="#skills" onClick={() => setIsMenuOpen(false)}>Skills</a></li>
           <li><a href="#projects" onClick={() => setIsMenuOpen(false)}>Projects</a></li>
@@ -65,25 +68,25 @@ export default function Header() {
 
       {/* About Modal */}
       {activeModal === 'about' && (
-        <div className="modal active" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content about-modal" onClick={(e) => e.stopPropagation()}>
             <button className="close-modal" onClick={closeModal}>&times;</button>
             <div className="modal-profile">
               <div className="modal-profile-container">
                 <div className="modal-light-ring"></div>
                 <img 
-                  src="https://raw.githubusercontent.com/maverick455456/ADMINS/refs/heads/main/ADMIN-DP/MR%20NIPUN%20OFC.png" 
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
                   alt="MR NIPUN" 
                   className="modal-profile-image"
                 />
               </div>
               <div className="modal-profile-info">
                 <h2>MR NIPUN</h2>
-                <p>Full Stack Developer & UI/UX Designer</p>
+                <p>Full Stack Developer & Designer</p>
               </div>
             </div>
             <div className="modal-body">
-              <div className="personal-details">
+              <div className="modal-details">
                 <div className="detail-item">
                   <i className="fas fa-user"></i>
                   <strong>Name:</strong>
@@ -92,11 +95,11 @@ export default function Header() {
                 <div className="detail-item">
                   <i className="fas fa-birthday-cake"></i>
                   <strong>Age:</strong>
-                  <span>18 Years</span>
+                  <span>18</span>
                 </div>
                 <div className="detail-item">
                   <i className="fas fa-map-marker-alt"></i>
-                  <strong>Location:</strong>
+                  <strong>From:</strong>
                   <span>Sri Lanka</span>
                 </div>
                 <div className="detail-item">
@@ -107,13 +110,10 @@ export default function Header() {
               </div>
               
               <div className="about-text">
-                <p>Hello! I'm <strong>MR NIPUN</strong>, a passionate full-stack developer and UI/UX designer with extensive expertise in creating modern, responsive web applications and digital experiences. With over 3 years of professional experience, I specialize in delivering high-quality solutions that combine technical excellence with creative design.</p>
-                
-                <p>My technical arsenal includes <strong>Java, Python, JavaScript, React, Next.js, Node.js, HTML5, CSS3</strong>, and expertise in working with <strong>Arduino micro devices</strong> for IoT solutions. I'm proficient in both frontend and backend development, ensuring seamless integration and optimal performance across all platforms.</p>
-                
-                <p>Beyond coding, I possess strong skills in <strong>photography, motion graphics animation, and professional logo design</strong>. This unique combination allows me to create visually stunning and highly engaging digital content that captivates users and enhances brand identity.</p>
-                
-                <p>My mission is to bridge the gap between technical functionality and aesthetic appeal, creating innovative digital solutions that not only solve complex problems but also provide exceptional user experiences. I'm committed to staying at the forefront of technology trends and continuously expanding my skill set to deliver cutting-edge solutions.</p>
+                <p>Hello! I'm MR NIPUN, a passionate full-stack developer and designer with expertise in creating modern web applications and digital experiences.</p>
+                <p>With a strong background in both frontend and backend technologies, I specialize in building responsive websites, web applications, and IoT solutions. My skills include Java, Python, HTML/CSS, NextJS, and working with Arduino micro devices.</p>
+                <p>I'm also skilled in photography, animation creation, and logo design, allowing me to create visually appealing and engaging digital content.</p>
+                <p>My goal is to combine technical expertise with creative design to build innovative solutions that solve real-world problems.</p>
               </div>
             </div>
           </div>
@@ -122,11 +122,10 @@ export default function Header() {
 
       {/* Social Media Modal */}
       {activeModal === 'social' && (
-        <div className="modal active" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content social-modal" onClick={(e) => e.stopPropagation()}>
             <button className="close-modal" onClick={closeModal}>&times;</button>
-            <h2 style={{textAlign: 'center', marginBottom: '10px', background: 'linear-gradient(45deg, var(--primary-red), var(--purple))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>My Social Media</h2>
-            <p style={{textAlign: 'center', color: 'var(--text-gray)', marginBottom: '30px'}}>Follow me on social media for updates and projects</p>
+            <h2>My Social Media</h2>
             <div className="social-grid">
               <a href="https://whatsapp.com/channel/0029Vb9bLMqGJP8GmAHxUd02/3683" target="_blank" className="social-item">
                 <i className="fab fa-whatsapp"></i>
@@ -163,45 +162,38 @@ export default function Header() {
 
       {/* Contact Modal */}
       {activeModal === 'contact' && (
-        <div className="modal active" onClick={closeModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content contact-modal" onClick={(e) => e.stopPropagation()}>
             <button className="close-modal" onClick={closeModal}>&times;</button>
-            <h2 style={{textAlign: 'center', marginBottom: '10px', background: 'linear-gradient(45deg, var(--primary-red), var(--purple))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>Get In Touch</h2>
-            <p style={{textAlign: 'center', color: 'var(--text-gray)', marginBottom: '30px'}}>Let's discuss your next project</p>
+            <h2 style={{textAlign: 'center', marginBottom: '20px', background: 'linear-gradient(to right, var(--primary-red), var(--purple))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent'}}>Contact Me</h2>
             <div className="modal-body">
+              <p style={{textAlign: 'center', marginBottom: '20px'}}>If you'd like to get in touch with me, please use the following contact information:</p>
               <div className="contact-info">
                 <ul>
                   <li>
                     <i className="fas fa-envelope"></i>
                     <div>
                       <strong>Email:</strong> 
-                      <a href="mailto:mrnipun@techweb.com">mrnipun@techweb.com</a>
+                      <span style={{marginLeft: '10px'}}>mrnipun@techweb.com</span>
                     </div>
                   </li>
                   <li>
                     <i className="fas fa-phone"></i>
                     <div>
                       <strong>Phone:</strong> 
-                      <a href="https://wa.me/+94757255903">+94 75 725 5903</a>
+                      <a href="https://wa.me/+94757255903" style={{marginLeft: '10px'}}>+94 75 725 5903</a>
                     </div>
                   </li>
                   <li>
                     <i className="fas fa-map-marker-alt"></i>
                     <div>
                       <strong>Location:</strong> 
-                      <span>Sri Lanka</span>
-                    </div>
-                  </li>
-                  <li>
-                    <i className="fas fa-clock"></i>
-                    <div>
-                      <strong>Availability:</strong> 
-                      <span>24/7 for Freelance Projects</span>
+                      <span style={{marginLeft: '10px'}}>Sri Lanka</span>
                     </div>
                   </li>
                 </ul>
               </div>
-              <p style={{textAlign: 'center', lineHeight: '1.6', fontSize: '16px', color: 'var(--text-light)'}}>Feel free to reach out for collaborations, freelance opportunities, or just to say hello! I'm always excited to work on new projects and connect with like-minded individuals.</p>
+              <p style={{textAlign: 'center', lineHeight: '1.6'}}>You can also reach out to me through my social media profiles for a quicker response.</p>
             </div>
           </div>
         </div>
